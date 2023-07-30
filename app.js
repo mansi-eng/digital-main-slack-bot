@@ -32,8 +32,16 @@ app.message("help", async ({ say }) => {
   });
 });
 
-app.message("hello", async ({ message, say }) => {
-  await say(`Current Date and time : `);
+app.message("time", async ({ message, say }) => {
+  let date = new Date().toLocaleDateString();
+  let time = new Date().toLocaleTimeString();
+  await say(`Current Date and time : *${date}* , *${time}* `);
+});
+
+app.message(/^(?!.*\b(?:hello|help|time)\b).*$/, async ({ message, say }) => {
+  await say(
+    `Invalid command, please type *help* to get the list of available commands.`
+  );
 });
 
 (async () => {

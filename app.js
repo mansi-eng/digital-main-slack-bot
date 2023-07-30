@@ -13,12 +13,16 @@ app.message("hello", async ({ message, say }) => {
   await say(`Hello there <@${message.user}>!`);
 });
 
-app.message("help", async ({ say }) => {
-  let text = "";
+const getCommands = () => {
+  let text = "List of Available commands. \n";
   commands.forEach(({ name, description }) => {
     text += `*${name}* - ${description}\n`;
   });
+  return text;
+};
 
+app.message("help", async ({ say }) => {
+  const text = getCommands();
   await say({
     blocks: [
       {
@@ -58,6 +62,36 @@ app.message(/joke/, async ({ message, say }) => {
     .catch((err) => {
       console.log("Oops. Something went wrong, while processing your request");
     });
+});
+
+app.message("button", async ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  await say({
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `Hey there <@${message.user}>!`,
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "Need Help",
+          },
+          action_id: "button_click",
+        },
+      },
+    ],
+    text: `Need help button`,
+  });
+});
+
+app.action("button_click", async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  await say(`<@${body.user.id}> clicked the button`);
 });
 
 (async () => {

@@ -7,6 +7,10 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
+app.message("hello", async ({ message, say }) => {
+  await say(`Hello there <@${message.user}>!`);
+});
+
 (async () => {
   await app.start(process.env.PORT || 3000);
 

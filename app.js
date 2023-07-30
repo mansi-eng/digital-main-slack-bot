@@ -53,10 +53,10 @@ app.message(/joke/, async ({ message, say }) => {
     .get("https://api.chucknorris.io/jokes/random")
     .then(async (res) => {
       const joke = res.data.value;
-      await say(`${joke}`);
+      await say(`Hope this joke will make you laugh!😃\n*${joke}* 😂`);
     })
     .catch((err) => {
-      console.log("error in fetching data");
+      console.log("Oops. Something went wrong, while processing your request");
     });
 });
 

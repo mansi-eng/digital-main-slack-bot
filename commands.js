@@ -11,6 +11,10 @@ const commands = [
     name: "help",
     description: "Provides the information for all the available commands",
   },
+  {
+    name: "joke",
+    description: "Generates a random joke",
+  },
 ];
 
 module.exports = commands;

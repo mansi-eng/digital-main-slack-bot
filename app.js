@@ -1,6 +1,7 @@
 require("dotenv").config();
-
 const { App } = require("@slack/bolt");
+const axios = require("axios");
+
 const commands = require("./commands");
 
 const app = new App({
@@ -38,10 +39,25 @@ app.message("time", async ({ message, say }) => {
   await say(`Current Date and time : *${date}* , *${time}* `);
 });
 
-app.message(/^(?!.*\b(?:hello|help|time)\b).*$/, async ({ message, say }) => {
-  await say(
-    `Invalid command, please type *help* to get the list of available commands.`
-  );
+app.message(
+  /^(?!.*\b(?:hello|help|time|joke)\b).*$/,
+  async ({ message, say }) => {
+    await say(
+      `Invalid command, please type *help* to get the list of available commands.`
+    );
+  }
+);
+
+app.message(/joke/, async ({ message, say }) => {
+  axios
+    .get("https://api.chucknorris.io/jokes/random")
+    .then(async (res) => {
+      const joke = res.data.value;
+      await say(`${joke}`);
+    })
+    .catch((err) => {
+      console.log("error in fetching data");
+    });
 });
 
 (async () => {

@@ -31,3 +31,5 @@ To ensure the bot works correctly and handles different scenarios gracefully.The
 2. Test the bot's response to invalid commands or unexpected input to ensure appropriate error messages are displayed.
 
 ## Output Images
+
+![output1](output1.png)

@@ -9,10 +9,7 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
-app.message("hello", async ({ message, say }) => {
-  await say(`Hello there <@${message.user}>!`);
-});
-
+//method to return all the available commands
 const getCommands = () => {
   let text = "List of Available commands. \n";
   commands.forEach(({ name, description }) => {
@@ -21,6 +18,7 @@ const getCommands = () => {
   return text;
 };
 
+//Listens to incoming messages that contain "help"
 app.message("help", async ({ say }) => {
   const text = getCommands();
   await say({
@@ -37,12 +35,14 @@ app.message("help", async ({ say }) => {
   });
 });
 
+//Listens to incoming messages that contain "time"
 app.message("time", async ({ message, say }) => {
   let date = new Date().toLocaleDateString();
   let time = new Date().toLocaleTimeString();
   await say(`Current Date and time : *${date}* , *${time}* `);
 });
 
+//Listens to incoming messages that contain invalid commands
 app.message(
   /^(?!.*\b(?:hello|help|time|joke)\b).*$/,
   async ({ message, say }) => {
@@ -52,6 +52,7 @@ app.message(
   }
 );
 
+//Listens to incoming messages that contain "joke"
 app.message(/joke/, async ({ message, say }) => {
   axios
     .get("https://api.chucknorris.io/jokes/random")
@@ -64,15 +65,15 @@ app.message(/joke/, async ({ message, say }) => {
     });
 });
 
-app.message("button", async ({ message, say }) => {
-  // say() sends a message to the channel where the event was triggered
+//Listens to incoming messages that contain "hello" with need-help button
+app.message("hello", async ({ message, say }) => {
   await say({
     blocks: [
       {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `Hey there <@${message.user}>!`,
+          text: `Hello there <@${message.user}>!`,
         },
         accessory: {
           type: "button",
@@ -89,9 +90,20 @@ app.message("button", async ({ message, say }) => {
 });
 
 app.action("button_click", async ({ body, ack, say }) => {
-  // Acknowledge the action
+  const text = getCommands();
   await ack();
-  await say(`<@${body.user.id}> clicked the button`);
+  await say({
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text,
+        },
+      },
+    ],
+    text: "Help Section",
+  });
 });
 
 (async () => {

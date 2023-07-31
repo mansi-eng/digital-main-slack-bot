@@ -21,7 +21,7 @@ To run the Slack bot locally for development, follow these steps:
 1. Clone this repository to your local machine.
 2. Install the required dependencies using `npm install` (for Node.js) or `pip install` (for Python).
 3. Set up the necessary configuration for your Slack bot and API access tokens.
-4. Start the bot using the appropriate command for your chosen framework.
+4. Start the bot.
 
 ## Testing
 

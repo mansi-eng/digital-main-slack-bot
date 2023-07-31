@@ -6,7 +6,7 @@ This project involves creating a Slack bot that can respond to various commands 
 
 The main objective of this project is to build a functional Slack bot that can respond to the following commands:
 
-1. `hello`: The bot will reply with a greeting message like "Hello there!" and provide a "Need Help" button that provides information about the available commands.
+1. `hello`: The bot will reply with a greeting message like "Hello there!" and provide a `Need Help` button that provides information about the available commands.
 2. `help`: The bot will display a list of available commands and their usage instructions.
 3. `time`: The bot will provide the current date and time.
 4. `joke`: The bot will generate a random joke using a third-party API ("getjoke").
@@ -29,6 +29,7 @@ To ensure the bot works correctly and handles different scenarios gracefully.The
 
 1. Test each command (`/hello`, `/help`, `/time`, and `/joke`) to verify their correct functionality.
 2. Test the bot's response to invalid commands or unexpected input to ensure appropriate error messages are displayed.
+3. Test `need-help` button response correctly with all the help commands. 
 
 ## Output Images
 

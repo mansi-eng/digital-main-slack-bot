@@ -1,72 +1,33 @@
-![img](https://cdn.iconscout.com/icon/free/png-256/free-chart-growth-1913955-1624750.png?f=webp)
+## Slack Bot Development
 
-# Stock Data
+This project involves creating a Slack bot that can respond to various commands and provide information based on user input. The boat was developed using a Slack bot framework/library (Node.js with @slack/bolt).
 
-## Backend
+## Objective
 
-- The backend exposes one endpoint - `/api/fetchStockData`.
-- This endpoint expects a req body in json format with two keys `ticker`, `date`.
-- It fetches the data for the particular date using the `Daily Open/Close` api exposed by Polygon.
-- Error is returned if the polygon api responds with an error
+The main objective of this project is to build a functional Slack bot that can respond to the following commands:
 
-Example request and response
-Endpoint - /api/fetchStockData
+1. `hello`: The bot will reply with a greeting message like "Hello there!" and provide a "Need Help" button that provides information about the available commands.
+2. `help`: The bot will display a list of available commands and their usage instructions.
+3. `time`: The bot will provide the current date and time.
+4. `joke`: The bot will generate a random joke using a third-party API ("getjoke").
+5. Invalid commands: The bot handle invalid commands or unexpected input gracefully by responding with "Invalid command" error messages
 
-Request:
+Additionally, the bot displays "Need Help" button on `hello` message that provides information about the available commands.
 
-```
-{
-    "ticker": "AAPL",
-    "date": "2023-07-14"
-}
-```
+## Development
 
-Response:
+To run the Slack bot locally for development, follow these steps:
 
-```
-{
-    "message": "Data fetched successfully",
-    "data": {
-        "open": 190.23,
-        "high": 191.1799,
-        "low": 189.63,
-        "close": 190.69,
-        "volume": 41616242
-    }
-}
-```
+1. Clone this repository to your local machine.
+2. Install the required dependencies using `npm install` (for Node.js) or `pip install` (for Python).
+3. Set up the necessary configuration for your Slack bot and API access tokens.
+4. Start the bot using the appropriate command for your chosen framework.
 
-Error response:
+## Testing
 
-```
-{
-    "error": {
-        "status": "NOT_FOUND",
-        "request_id": "78ccf05e99aa4460662ea5c464281a7d",
-        "message": "Data not found."
-    }
-}
-```
+To ensure the bot works correctly and handles different scenarios gracefully.The following areas should be tested:
 
-## Frontend
+1. Test each command (`/hello`, `/help`, `/time`, and `/joke`) to verify their correct functionality.
+2. Test the bot's response to invalid commands or unexpected input to ensure appropriate error messages are displayed.
 
-```
-- App
-    - TickerContainer
-        - TickerDetails
-            - Data
-```
-
-- The `TickerContainer` components contains a form wherein user can enter the Ticker name and date.
-- It sends an api request to our backend endpoint.
-- `TickerDetails` component renders the data.
-- Loading and error states are handled and shown to the user.
-- The submit button is disabled if user has not entered any of the fields.
-
-### Optimal Tasks
-
-- Autocomplete stock tickers: Dropdown showing autocompletion suggestions for tickers.
-- Implement Caching Mechanism: To improve response times.
-- Pagination and infinite scroll: Show historical data for multiple days if user needs to.
-- Data visualization: Show candlestick charts or line charts to represent data.
-- Option to export data to csv or excel.
+## Output Images

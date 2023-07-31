@@ -27,7 +27,7 @@ To run the Slack bot locally for development, follow these steps:
 
 To ensure the bot works correctly and handles different scenarios gracefully.The following areas should be tested:
 
-1. Test each command (`/hello`, `/help`, `/time`, and `/joke`) to verify their correct functionality.
+1. Test each command (`hello`, `help`, `time`, and `joke`) to verify their correct functionality.
 2. Test the bot's response to invalid commands or unexpected input to ensure appropriate error messages are displayed.
 3. Test `need-help` button response correctly with all the help commands. 
 

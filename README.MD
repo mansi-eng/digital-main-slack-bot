@@ -33,3 +33,5 @@ To ensure the bot works correctly and handles different scenarios gracefully.The
 ## Output Images
 
 ![output1](output1.png)
+![output2](output2.png)
+![output3](output3.png)

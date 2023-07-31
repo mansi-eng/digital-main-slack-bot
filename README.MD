@@ -34,4 +34,4 @@ To ensure the bot works correctly and handles different scenarios gracefully.The
 
 ![output1](output1.png)
 ![output2](output2.png)
-![Output3](output3.png)
+![output3](Output3.png)
